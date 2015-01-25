@@ -6,13 +6,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Selenium {
 	public static void main(String[] v) {
-
+        if (v.length == 0){
+        	System.err.println("No Arguments");
+        	System.exit(1);
+        }
 		WebDriver driver = new FirefoxDriver();    // Version 1.1 :: Firefox
-
 		String text_case_id = "TC-001.01";
-		String url = "https://www.yahoo.com//";
-		String title_expected = "Yahooo";
-		
+		// String url = "https://www.yahoo.com//";
+		// String title_expected = "Yahoo";
+		String param[] = v[0].split("\\|");
+		String url = param[0];
+		String title_expected = param[1];
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		String title_actual = driver.getTitle();
